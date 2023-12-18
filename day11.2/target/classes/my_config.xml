@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- config spring beans -->
+	<!-- - Test transport as singleton n eager- -->
+	
+		<bean id="my_atm" class="dependent.ATMImpl" scope="prototype" 
+		init-method="anyDestroy" destroy-method="anyDestroy">
+
+		<!-- setter based D.I -->
+		<property name="myTransport" ref="http"></property>
+
+
+	</bean>
+	
+	
+	<bean id="test" class="dependency.TestTransport"></bean>
+
+	<!-- HttpsTransport as singleton n lazy -->
+
+	<bean id="http" class="dependency.HttpTransport" lazy-init="true">
+	</bean>
+
+	<!-- soapTransport prototype n lazy -->
+	<bean id="soap" class="dependency.SoapTransport" scope="prototype">
+	</bean>
+
+
+	<!-- dependent bean atm singleton n eager -->
+
+
+
+
+</beans>
